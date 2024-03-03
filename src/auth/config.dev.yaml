@@ -1,0 +1,18 @@
+app:
+  docs_url: /docs
+  redoc_url: /redoc
+
+logging:
+  level: 'INFO'
+
+server:
+  cors: ['*',]\
+
+data:
+  username: mongoadmin
+  password: admin
+
+services:
+  auth:
+    expire_min: 1
+    refresh_min: 10

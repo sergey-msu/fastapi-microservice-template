@@ -1,0 +1,25 @@
+app:
+  title: 'Auth Service API'
+  description: 'InvestApp Auth Service API'
+  version: '1.0.0'
+
+logging:
+  filename: '../../logs/auth/app.log'
+  filemode: 'a'
+  format: '%(asctime)s [%(levelname)s]: %(message)s'
+  datefmt: '%Y-%m-%d %H:%M:%S'
+
+server: {}
+
+data:
+  host: 'localhost'
+  port: 27017
+  tokens_db: 'auth'
+  tokens_coll: 'tokens'
+
+services:
+  auth:
+    secret_key: ${AUTH_SECRET_KEY}
+    algorithm: 'HS256'
+    token_name: 'investapp_access_token'
+    token_location: 'cookies'

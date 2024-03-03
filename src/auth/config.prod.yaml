@@ -1,0 +1,19 @@
+app:
+  docs_url: /docs  # TODO remove when frontend will be finished 
+  redoc_url: null
+
+logging:
+  level: 'WARNING'
+
+server:
+  cors: ['*',]  # TODO switch to frontend when it will be finished 
+
+data:
+  host: mongo  # docker service name
+  username: mongoadmin
+  password: ${MONGO_PASSWORD}
+
+services:
+  auth:
+    expire_min: 10
+    refresh_min: 1400  # 1 day
