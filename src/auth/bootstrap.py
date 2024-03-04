@@ -90,7 +90,7 @@ class Container(containers.DeclarativeContainer):
                 container.init_resources()
                 container.wire(
                     modules=[],
-                    packages=['api',]
+                    packages=['api']
                 )
 
                 cls.__instance = container
