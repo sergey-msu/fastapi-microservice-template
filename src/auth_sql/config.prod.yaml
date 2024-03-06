@@ -1,0 +1,19 @@
+app:
+  docs_url: /docs  # TODO remove when frontend will be finished 
+  redoc_url: null
+
+logging:
+  level: 'WARNING'
+
+server:
+  cors: ['*',]  # TODO switch to frontend when it will be finished 
+
+data:
+  db:
+    url: postgresql+asyncpg://postgres:${POSTGRES_PASSWORD}@db:5432/exampleapp'
+    url_sync: postgresql+psycopg://postgres:${POSTGRES_PASSWORD}@db:5432/exampleapp'
+
+services:
+  auth:
+    expire_min: 10
+    refresh_min: 1400  # 1 day

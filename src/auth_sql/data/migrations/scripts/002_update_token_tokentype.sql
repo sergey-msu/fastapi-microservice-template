@@ -1,0 +1,2 @@
+ALTER TABLE "tokens" 
+ADD COLUMN token_type VARCHAR(32) NOT NULL DEFAULT 'bearer';

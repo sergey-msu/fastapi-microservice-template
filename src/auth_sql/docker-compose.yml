@@ -1,0 +1,40 @@
+version: '3.7'
+services:
+
+  db:
+    image: postgres:15
+    container_name: exampleapp_sql_db
+    environment:
+      - POSTGRES_DB=exampleapp
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - postgresdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432    # remove in prod, use only if we want to access from outside of docker
+
+  app:
+    image: exampleapp_auth_api_sql_image:v1
+    container_name: exampleapp_auth_api_sql
+    environment:
+      - APP_MODE=${APP_MODE}
+      - APP_SECRET_KEY=${APP_SECRET_KEY}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    build:
+      context: .
+    depends_on:
+      - db
+    volumes:
+      - logdata:/logs/auth
+    ports:
+      - 8001:8001    # remove in prod, use only if we want to access from outside of docker
+    command:
+      - /bin/sh
+      - -c
+      - |
+        alembic -c tox.ini upgrade head
+        gunicorn app:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind=0.0.0.0:8001
+
+volumes:
+  logdata:
+  postgresdata:
