@@ -20,7 +20,7 @@ def run_migrations_offline() -> None:
         script output.
     '''
     url = Container.instance().config.data.db.url_sync()
-    context.configure(url=f'postgresql+psycopg://{url}')
+    context.configure(url=url)
 
     with context.begin_transaction():
         context.run_migrations()
@@ -34,7 +34,7 @@ def run_migrations_online() -> None:
         and associate a connection with the context.
     '''
     url = Container.instance().config.data.db.url_sync()
-    connectable = create_engine(f'postgresql+psycopg://{url}')
+    connectable = create_engine(url)
 
     with connectable.connect() as connection:
         context.configure(connection=connection)
