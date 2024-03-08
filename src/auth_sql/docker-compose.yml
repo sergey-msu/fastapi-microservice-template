@@ -4,10 +4,8 @@ services:
   db:
     image: postgres:15
     container_name: exampleapp_sql_db
-    environment:
-      - POSTGRES_DB=exampleapp
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    env_file:
+      - .env
     volumes:
       - postgresdata:/var/lib/postgresql/data
     ports:
@@ -16,10 +14,8 @@ services:
   app:
     image: exampleapp_auth_api_sql_image:v1
     container_name: exampleapp_auth_api_sql
-    environment:
-      - APP_MODE=${APP_MODE}
-      - APP_SECRET_KEY=${APP_SECRET_KEY}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    env_file:
+      - .env
     build:
       context: .
     depends_on:

@@ -89,7 +89,7 @@ class Container(containers.DeclarativeContainer):
                 container = Container()
                 container.init_resources()
                 container.wire(
-                    modules=[],
+                    modules=[__name__],
                     packages=['api']
                 )
 

@@ -39,19 +39,6 @@ flake8
 
 ## update secrets file
 
-```
-from cryptography.fernet import Fernet
-
-secrets = {
-    'AUTH_SECRET_KEY': 'sadsadsadsa',
-}
-secrets = str(secrets).encode()
-
-key = '[APP_SECRET_KEY]'
-encrypted_item = Fernet(key).encrypt(secrets)
-print(encrypted_item)
-```
-
 ## Docker
 local:
 ```
@@ -59,7 +46,7 @@ cd src/auth
 sudo docker build .
 sudo docker images
 sudo docker run -d \
-    -e APP_SECRET_KEY=[dev|prod] \
+    -e APP_MODE=[dev|prod] \
     -e APP_SECRET_KEY=[GLOBAL_SECRET_KEY] \
     -e MONGO_PASSWORD=[MONGO_PASSWORD] \
     -p 8001:8001 [image]

@@ -1,6 +1,6 @@
 app:
   title: 'Auth Service API'
-  description: 'InvestApp Auth Service API'
+  description: 'ExampleApp Auth Service API'
   version: '1.0.0'
 
 logging:
@@ -21,5 +21,5 @@ services:
   auth:
     secret_key: ${AUTH_SECRET_KEY}
     algorithm: 'HS256'
-    token_name: 'investapp_access_token'
+    token_name: 'exampleapp_access_token'
     token_location: 'cookies'

@@ -1,4 +1,4 @@
-# InvestApp: Auth microservice
+# ExampleApp: Auth microservice
 
 ## before the first start
 
@@ -97,7 +97,7 @@ sudo lsof -i -P -n | grep 80
 
 start new session:
 ```
-tmux new -s investapp-auth
+tmux new -s exampleapp-auth
 ```
 
 detach from session:
@@ -105,7 +105,7 @@ CTRL+B,D
 
 attach to session:
 ```
-tmux a -t investapp-auth
+tmux a -t exampleapp-auth
 ```
 
 ## nginx

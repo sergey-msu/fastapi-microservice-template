@@ -11,5 +11,4 @@ MODE_ENV_VAR = 'APP_MODE'
 SECRET_ENV_VAR = 'APP_SECRET_KEY'
 
 ENV_DEV = 'dev'
-ENV_STAGE = 'stage'
 ENV_PROD = 'prod'

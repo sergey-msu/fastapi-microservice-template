@@ -14,7 +14,11 @@ class JWT:
     '''
         JWT core functions
     '''
-    def __init__(self, secret_key: str, algorithm: str):
+    def __init__(
+        self,
+        secret_key: str,
+        algorithm: str,
+    ):
         self.secret_key: str = secret_key
         self.algorithm: str = algorithm
 
