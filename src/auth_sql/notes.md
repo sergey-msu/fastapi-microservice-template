@@ -14,15 +14,13 @@ pip install -m requirements.txt
 ```
 cd src/auth
 source venv/bin/activate
-export APP_MODE=[dev|prod]
-export APP_SECRET_KEY=[GLOBAL_SECRET_KEY]
 uvicorn app:app --host 0.0.0.0 --port 8001 --reload
 ```
 
 or (the last line)
 
 ```
-gunicorn app:app --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind=0.0.0.0:8001
+gunicorn app:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind=0.0.0.0:8001
 ```
 
 ## run tests
@@ -45,11 +43,7 @@ local:
 cd src/auth
 sudo docker build .
 sudo docker images
-sudo docker run -d \
-    -e APP_MODE=[dev|prod] \
-    -e APP_SECRET_KEY=[GLOBAL_SECRET_KEY] \
-    -e MONGO_PASSWORD=[MONGO_PASSWORD] \
-    -p 8001:8001 [image]
+sudo docker run -d -p 8001:8001 [image]
 ```
 
 working with http://0.0.0.0:8001/api/v1/docs :
@@ -62,9 +56,6 @@ sudo docker stop [container]
 compose:
 ```
 cd src/auth
-export APP_SECRET_KEY=[GLOBAL_SECRET_KEY]
-export APP_MODE=[APP_MODE]
-export MONGO_PASSWORD=[MONGO_PASSWORD]
 sudo -E docker-compose build
 sudo -E docker-compose up
 ```
@@ -73,6 +64,8 @@ clear all (containers and images):
 ```
 sudo docker container prune
 sudo docker system prune -a
+sudo docker volume ls
+sudo docker volume rm [volume_name]
 ```
 
 who is using port 80:
