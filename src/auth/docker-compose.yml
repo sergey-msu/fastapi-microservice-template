@@ -4,10 +4,8 @@ services:
   mongo:
     image: mongo:latest
     container_name: exampleapp_auth_mongo
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=mongoadmin
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
-      - MONGO_INITDB_DATABASE=auth
+    env_file:
+      - .env
     volumes:
       - mongodbdata:/data/db
     ports:
@@ -16,10 +14,8 @@ services:
   app:
     image: exampleapp_auth_api_image:v1
     container_name: exampleapp_auth_api
-    environment:
-      - APP_MODE=${APP_MODE}
-      - APP_SECRET_KEY=${APP_SECRET_KEY}
-      - MONGO_PASSWORD=${MONGO_PASSWORD}
+    env_file:
+      - .env
     build:
       context: .
     depends_on:

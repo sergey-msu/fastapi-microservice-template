@@ -11,14 +11,10 @@ from dependency_injector import providers
 from dependency_injector.wiring import Provide
 from fastapi import Depends
 
-from utils.utils import load_secrets
 from utils.consts import MODE_ENV_VAR
 from data.vault import Vault
 from domain.jwt import JWT
 import services
-
-
-APP_MODE = os.environ[MODE_ENV_VAR].lower()
 
 
 class Container(containers.DeclarativeContainer):
@@ -28,7 +24,8 @@ class Container(containers.DeclarativeContainer):
 
     # Configuration
 
-    config = providers.Configuration(yaml_files=['./config.yaml', f'./config.{APP_MODE}.yaml'], strict=True)
+    app_mode = os.environ[MODE_ENV_VAR].lower()
+    config = providers.Configuration(yaml_files=['./config.yaml', f'./config.{app_mode}.yaml'], strict=True)
 
     # Logging
 
@@ -83,9 +80,6 @@ class Container(containers.DeclarativeContainer):
     def instance(cls):
         with cls.__lock:
             if cls.__instance is None:
-                load_secrets()
-
-                # build dependencies
                 container = Container()
                 container.init_resources()
                 container.wire(

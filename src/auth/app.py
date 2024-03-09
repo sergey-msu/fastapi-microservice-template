@@ -2,14 +2,18 @@
     FastAPI app entry point
 '''
 import logging
+from dotenv import load_dotenv
 
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi_versioning import VersionedFastAPI
+# load env vars from .env file
+load_dotenv()
 
-from utils.middlewares import app_exception_handler
-from api import auth
-from bootstrap import Container
+from fastapi import FastAPI  # noqa E402
+from fastapi.middleware.cors import CORSMiddleware  # noqa E402
+from fastapi_versioning import VersionedFastAPI  # noqa E402
+
+from utils.middlewares import app_exception_handler  # noqa E402
+from api import auth  # noqa E402
+from bootstrap import Container  # noqa E402
 
 
 def create_app() -> FastAPI:

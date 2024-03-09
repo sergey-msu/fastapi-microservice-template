@@ -15,7 +15,6 @@ pip install -m requirements.txt
 cd src/auth
 source venv/bin/activate
 export APP_MODE=[dev|prod]
-export APP_SECRET_KEY=[GLOBAL_SECRET_KEY]
 uvicorn app:app --host 0.0.0.0 --port 8001 --reload
 ```
 
