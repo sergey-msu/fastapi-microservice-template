@@ -11,9 +11,9 @@ from dotenv import load_dotenv
 # load env vars from .env file
 load_dotenv()
 
-from utils.middlewares import app_exception_handler # noqa E402
-from api import auth # noqa E402
-from bootstrap import Container # noqa E402
+from utils.middlewares import app_exception_handler  # noqa E402
+from api import auth  # noqa E402
+from bootstrap import Container  # noqa E402
 
 
 def create_app() -> FastAPI:

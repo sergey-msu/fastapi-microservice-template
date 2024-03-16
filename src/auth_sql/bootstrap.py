@@ -23,6 +23,7 @@ class Container(containers.DeclarativeContainer):
     '''
 
     # Configuration
+
     app_mode = os.environ[MODE_ENV_VAR].lower()
     config = providers.Configuration(yaml_files=['./config.yaml', f'./config.{app_mode}.yaml'], strict=True)
 
